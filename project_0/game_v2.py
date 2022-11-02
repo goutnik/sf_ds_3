@@ -16,11 +16,19 @@ def random_predict(number: int = 1) -> int:
     """
     count = 0
 
+    high = 100 # верхнее значение рассматриваемого интервала
+    low = 1 # нижнее значение интервала
+
     while True:
         count += 1
-        predict_number = np.random.randint(1, 101)  # предполагаемое число
+        predict_number = (low+high)//2  # предполагаемое число - середина интервала
         if number == predict_number:
             break  # выход из цикла если угадали
+        elif number > predict_number:
+            low = predict_number+1 # если число БОЛЬШЕ на следующем шаге рассматриваем верхнюю половину интервала
+        else: high = predict_number-1 # если число МЕНЬШЕ на следующем шаге рассматриваем нижнюю половину интервала
+            
+            
     return count
 
 
